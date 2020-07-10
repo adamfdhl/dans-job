@@ -1,16 +1,41 @@
 import React, { useState } from "react";
 import { GoBriefcase } from "react-icons/go";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+import Loader from "../../components/Loader/Loader";
 
 import "./Login.scss";
 
 const Login = (props) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [loading, setLoading] = useState(false);
 
 	const loginHandler = (e) => {
 		e.preventDefault();
-		console.log(email, password);
+		setLoading(true);
+		const data = {
+			email,
+			password,
+			returnSecureToken: true,
+		};
+		axios
+			.post(
+				`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_API_KEY}`,
+				data
+			)
+			.then((response) => {
+				setLoading(false);
+				localStorage.setItem("token", response.data.idToken);
+				localStorage.setItem("email", response.data.email);
+				localStorage.setItem("expiresIn", response.data.expiresIn);
+				props.history.push("/job-page");
+			})
+			.catch((err) => {
+				setLoading(false);
+				console.log(err);
+			});
 	};
 
 	return (
@@ -35,6 +60,8 @@ const Login = (props) => {
 				<button className="button-submit" type="submit">
 					login
 				</button>
+				{loading && <Loader />}
+				{}
 				<p>
 					Don't have any account yet? Click <Link to="/register">here!</Link>
 				</p>
