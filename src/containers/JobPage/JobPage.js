@@ -16,10 +16,23 @@ const JobPage = (props) => {
 		props.history.push("/job-page/" + jobId);
 	};
 
-	const searchHandler = (e) => {
-		e.preventDefault();
-		console.log(description, location);
-	};
+	const searchHandler = useCallback(
+		(e) => {
+			e.preventDefault();
+			const query = `${description ? description : ""}&${
+				location ? location : ""
+			}`;
+			axios
+				.get(`${process.env.REACT_APP_API_ENDPOINT}/jobs?${query}`)
+				.then((response) => {
+					console.log(response);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		},
+		[setJobs]
+	);
 
 	const getJobs = useCallback(() => {
 		setLoading(true);
@@ -33,11 +46,14 @@ const JobPage = (props) => {
 				setLoading(false);
 				console.log(error);
 			});
-	});
+	}, [setJobs]);
 
 	useEffect(() => {
+		// searchHandler();
 		getJobs();
-	}, []);
+		return () => {};
+	}, [getJobs]);
+
 	return (
 		<React.Fragment>
 			<Navbar />
@@ -78,7 +94,7 @@ const JobPage = (props) => {
 					<Loader />
 				) : jobs ? (
 					<React.Fragment>
-						<h2>{jobs.length} jobs opening now</h2>
+						<h2>{jobs.length} jobs found</h2>
 						<div className="job-list">
 							{jobs.map((job) => {
 								return (

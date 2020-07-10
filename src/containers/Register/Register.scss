@@ -15,6 +15,10 @@
 		width: 40vh;
 		height: 50vh;
 	}
+	@media (min-width: 900px) {
+		width: 35vw;
+		height: 40vw;
+	}
 	.icon-brief {
 		align-self: center;
 		width: 8vw;

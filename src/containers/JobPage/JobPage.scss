@@ -44,7 +44,8 @@
 			padding: 0.5rem 2.3rem;
 			@media (max-width: 600px) {
 				.button-search {
-					padding: 0.5rem 1rem;
+					padding: 0.3 0.5rem;
+					font-size: 1rem;
 				}
 			}
 			&:hover {
