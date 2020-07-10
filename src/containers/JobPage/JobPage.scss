@@ -3,6 +3,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	padding: 2.5rem;
 	input,
 	label {
 		display: block;
@@ -15,6 +16,12 @@
 		display: flex;
 		flex-direction: row;
 		align-items: flex-end;
+		margin-bottom: 1.5rem;
+		@media (max-width: 600px) {
+			label {
+				font-size: 0.8rem;
+			}
+		}
 		.input-field {
 			margin: 0 1rem;
 			input {
@@ -35,6 +42,11 @@
 			color: black;
 			background-color: white;
 			padding: 0.5rem 2.3rem;
+			@media (max-width: 600px) {
+				.button-search {
+					padding: 0.5rem 1rem;
+				}
+			}
 			&:hover {
 				border-color: white;
 				color: white;
@@ -44,4 +56,52 @@
 		}
 	}
 	/* Job List */
+	.job-list {
+		display: flex;
+		flex-direction: column;
+		margin-top: 2rem;
+		border: 0.1rem solid black;
+		padding: 1rem;
+		box-shadow: 0.5rem 0.5rem #888;
+		.job {
+			border-bottom: 0.1rem solid #888;
+			.job-location {
+				float: right;
+				margin-top: 1rem;
+			}
+			.job-little-desc {
+				display: flex;
+				margin-bottom: 1.5rem;
+				.job-type {
+					border: 0.1rem solid green;
+					background-color: greenyellow;
+					border-radius: 0.3rem;
+					padding: 0.3rem;
+					color: black;
+					margin-right: 1rem;
+				}
+			}
+		}
+		.button-details {
+			float: right;
+			text-transform: uppercase;
+			margin: 0 0.5rem;
+			border: 0.1rem solid black;
+			border-radius: 0.5rem;
+			color: black;
+			background-color: white;
+			padding: 0.5rem 1.5rem;
+			@media (max-width: 600px) {
+				.button-details {
+					padding: 0.5rem 1rem;
+				}
+			}
+			&:hover {
+				border-color: white;
+				color: white;
+				background-color: black;
+				cursor: pointer;
+			}
+		}
+	}
 }

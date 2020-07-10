@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import Loader from "../../components/Loader/Loader";
 import axios from "axios";
 
 import "./JobPage.scss";
@@ -8,27 +9,35 @@ const JobPage = (props) => {
 	const [description, setDescription] = useState("");
 	const [location, setLocation] = useState("");
 	const [jobs, setJobs] = useState([]);
+	const [loading, setLoading] = useState(false);
 	// const [isFulltime, setIsFsulltime] = useState(false);
+
+	const detailsJobHandler = (jobId) => {
+		props.history.push("/job-page/" + jobId);
+	};
 
 	const searchHandler = (e) => {
 		e.preventDefault();
 		console.log(description, location);
 	};
 
-	const getJobs = () => {
+	const getJobs = useCallback(() => {
+		setLoading(true);
 		axios
-			.get("https://jobs.github.com/positions.json")
+			.get(`${process.env.REACT_APP_API_ENDPOINT}/jobs`)
 			.then((response) => {
-				console.log(response);
+				setLoading(false);
+				setJobs(response.data);
 			})
 			.catch((error) => {
+				setLoading(false);
 				console.log(error);
 			});
-	};
+	});
 
 	useEffect(() => {
 		getJobs();
-	}, [getJobs]);
+	}, []);
 	return (
 		<React.Fragment>
 			<Navbar />
@@ -65,6 +74,33 @@ const JobPage = (props) => {
 					</button>
 				</form>
 				{/* JobList */}
+				{loading ? (
+					<Loader />
+				) : (
+					<div className="job-list">
+						{jobs.map((job) => {
+							return (
+								<div key={job.id} className="job">
+									<div className="job-location">
+										<b>{job.location}</b>
+									</div>
+									<h3 className="job-title">
+										{job.company} is hiring for {job.title}
+									</h3>
+									<button
+										className="button-details"
+										onClick={() => detailsJobHandler(job.id)}
+									>
+										details
+									</button>
+									<div className="job-little-desc">
+										<div className="job-type">{job.type}</div>
+									</div>
+								</div>
+							);
+						})}
+					</div>
+				)}
 			</div>
 		</React.Fragment>
 	);
