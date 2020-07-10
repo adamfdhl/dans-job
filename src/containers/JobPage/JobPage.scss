@@ -1,0 +1,47 @@
+.JobPage {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	input,
+	label {
+		display: block;
+	}
+	label {
+		font-weight: bold;
+	}
+	/* Job Search Form */
+	.job-form {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-end;
+		.input-field {
+			margin: 0 1rem;
+			input {
+				width: 20vw;
+				padding: 0.5rem;
+				border: none;
+				border-bottom: 0.1rem solid black;
+				&:focus {
+					background-color: rgb(241, 241, 241);
+				}
+			}
+		}
+		.button-search {
+			text-transform: uppercase;
+			margin: 0 0.5rem;
+			border: 0.1rem solid black;
+			border-radius: 0.5rem;
+			color: black;
+			background-color: white;
+			padding: 0.5rem 2.3rem;
+			&:hover {
+				border-color: white;
+				color: white;
+				background-color: black;
+				cursor: pointer;
+			}
+		}
+	}
+	/* Job List */
+}

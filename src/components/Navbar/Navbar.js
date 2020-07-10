@@ -16,7 +16,7 @@ const Navbar = (props) => {
 			<li onClick={logoutHandler} className="right-link">
 				logout
 			</li>
-			<li className="right-link">Hi, blabla!</li>
+			<li className="right-link">Hi, {localStorage.getItem("email")}!</li>
 		</ul>
 	);
 };
