@@ -1,0 +1,29 @@
+.Navbar {
+	margin: 0;
+	padding: 1rem;
+	list-style-type: none;
+	background-color: black;
+	color: white;
+	a {
+		text-decoration: none;
+		color: white;
+	}
+	li {
+		display: inline;
+		&:nth-child(2) {
+			font-weight: bold;
+			text-transform: uppercase;
+			&:hover {
+				cursor: pointer;
+				color: rgb(196, 193, 193);
+			}
+		}
+		@media (max-width: 600px) {
+			font-size: 0.8rem;
+		}
+	}
+	.right-link {
+		float: right;
+		margin: 0 1rem;
+	}
+}
