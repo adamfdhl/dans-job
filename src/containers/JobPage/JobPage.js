@@ -76,31 +76,34 @@ const JobPage = (props) => {
 				{/* JobList */}
 				{loading ? (
 					<Loader />
-				) : (
-					<div className="job-list">
-						{jobs.map((job) => {
-							return (
-								<div key={job.id} className="job">
-									<div className="job-location">
-										<b>{job.location}</b>
+				) : jobs ? (
+					<React.Fragment>
+						<h2>{jobs.length} jobs opening now</h2>
+						<div className="job-list">
+							{jobs.map((job) => {
+								return (
+									<div key={job.id} className="job">
+										<div className="job-location">
+											<b>{job.location}</b>
+										</div>
+										<h3 className="job-title">
+											{job.company} is hiring for {job.title}
+										</h3>
+										<button
+											className="button-details"
+											onClick={() => detailsJobHandler(job.id)}
+										>
+											details
+										</button>
+										<div className="job-little-desc">
+											<div className="job-type">{job.type}</div>
+										</div>
 									</div>
-									<h3 className="job-title">
-										{job.company} is hiring for {job.title}
-									</h3>
-									<button
-										className="button-details"
-										onClick={() => detailsJobHandler(job.id)}
-									>
-										details
-									</button>
-									<div className="job-little-desc">
-										<div className="job-type">{job.type}</div>
-									</div>
-								</div>
-							);
-						})}
-					</div>
-				)}
+								);
+							})}
+						</div>
+					</React.Fragment>
+				) : null}
 			</div>
 		</React.Fragment>
 	);

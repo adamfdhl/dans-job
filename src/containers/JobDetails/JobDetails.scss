@@ -1,0 +1,23 @@
+.JobDetails {
+	padding: 2.5rem 8rem;
+	@media (max-width: 600px) {
+		padding: 2.5rem 4rem;
+	}
+	.job-header {
+		display: flex;
+		h3 {
+			margin: 0;
+			margin-left: 0.5rem;
+		}
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	.job-about {
+		h1 {
+			@media (max-width: 600px) {
+				font-size: 1.5rem;
+			}
+		}
+	}
+}
