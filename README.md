@@ -7,5 +7,6 @@ REACT_APP_FIREBASE_API_KEY=\${YOUR_API_KEY}
 
 # HOW TO RUN
 
-1. npm i (installing all dependencies)
-2. npm start (start your local server)
+1. Run your NodeJS server
+2. npm i (installing all dependencies)
+3. npm start (start your local server)
