@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { GoBriefcase } from "react-icons/go";
+import axios from "axios";
 
 import "./Register.scss";
 
@@ -10,21 +13,30 @@ const Register = (props) => {
 		e.preventDefault();
 	};
 	return (
-		<div className="Register">
-			<form onSubmit={(e) => registerHandler(e)}>
+		<div className="RegisterPage">
+			<form className="register-form" onSubmit={(e) => registerHandler(e)}>
+				<GoBriefcase className="icon-brief" />
+				<h3 className="register-title">Register Account</h3>
+				<label>Email</label>
 				<input
 					type="text"
-					placeholder="email"
+					placeholder="Email"
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 				/>
+				<label>Password</label>
 				<input
 					type="password"
-					placeholder="password"
+					placeholder="Password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 				/>
-				<button type="submit">register</button>
+				<button className="button-submit" type="submit">
+					register
+				</button>
+				<p>
+					Already have an account? Click <Link to="/login">here!</Link>
+				</p>
 			</form>
 		</div>
 	);

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { GoBriefcase } from "react-icons/go";
+import { Link } from "react-router-dom";
 
 import "./Login.scss";
 
@@ -12,21 +14,30 @@ const Login = (props) => {
 	};
 
 	return (
-		<div className="Login">
-			<form onSubmit={(e) => loginHandler(e)}>
+		<div className="LoginPage">
+			<form className="login-form" onSubmit={(e) => loginHandler(e)}>
+				<GoBriefcase className="icon-brief" />
+				<h3 className="login-title">Login Account</h3>
+				<label>Email</label>
 				<input
 					type="text"
-					placeholder="email"
+					placeholder="Email"
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}
 				/>
+				<label>Password</label>
 				<input
 					type="password"
-					placeholder="password"
+					placeholder="Password"
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}
 				/>
-				<button type="submit">login</button>
+				<button className="button-submit" type="submit">
+					login
+				</button>
+				<p>
+					Don't have any account yet? Click <Link to="/register">here!</Link>
+				</p>
 			</form>
 		</div>
 	);
